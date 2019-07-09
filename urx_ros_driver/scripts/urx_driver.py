@@ -3,6 +3,8 @@
 import rospy
 from std_msgs.msg import String
 from sensor_msgs.msg import JointState
+from geometry_msgs.msg import Twist
+from geometry_msgs.msg import PoseStamped
 
 from signal import signal, SIGINT
 from sys import exit
@@ -14,8 +16,13 @@ import logging
 
 # some global variables
 robot = None
+
+# publishers
 pub_joint_state = None
 pub_tool_pose = None
+pub_tool_force = None
+
+
 pub = None 
 rate = None
 monitor = None
@@ -27,7 +34,7 @@ def ctrlc_handler(signa_received, frame):
 	exit(0)
 
 def initialize_driver():
-	global pub, pub_joint_state, robot, rate, monitor
+	global pub, pub_joint_state, robot, rate, monitor, pub_tool_force, pub_tool_pose
 	
 	# initialize node
 	rospy.init_node('urx_driver', anonymous=True)
@@ -35,6 +42,8 @@ def initialize_driver():
 	# setup publishers and subscribers
 	pub = rospy.Publisher('chatter', String, queue_size=10)
 	pub_joint_state = rospy.Publisher('joint_state', JointState, queue_size=10)
+	pub_tool_force = rospy.Publisher('tool_force', Twist, queue_size=10)
+	pub_tool_pose = rospy.Publisher('tool_pose', PoseStamped, queue_size=10)
 	
 	# connect to the robot
 	logging.basicConfig(level=logging.INFO)
@@ -45,7 +54,7 @@ def initialize_driver():
 	monitor = robot.get_realtime_monitor()
 
 def loop():
-	global pub, pub_joint_state, robot, rate, monitor
+	global pub, pub_joint_state, robot, rate, monitor, pub_tool_force, pub_tool_pose
 	
 	
 	# get data from robot
