@@ -8,6 +8,7 @@ https://github.com/SintefManufacturing/python-urx
 
 2. Some dependencies needed for interfacing with the Robotiq gripper:
 rosdep install robotiq_modbus_tcp
+
 sudo apt-get install ros-kinetic-soem
 
 3. Clone and compile
