@@ -14,8 +14,11 @@ import actionlib
 import urx
 import logging
 
+from urx.robotiq_two_finger_gripper import Robotiq_Two_Finger_Gripper
+
 # some global variables
 robot = None
+gripper = None
 
 # publishers
 pub_joint_state = None
@@ -34,7 +37,7 @@ def ctrlc_handler(signa_received, frame):
 	exit(0)
 
 def initialize_driver():
-	global pub, pub_joint_state, robot, rate, monitor, pub_tool_force, pub_tool_pose
+	global pub, pub_joint_state, robot, rate, monitor, pub_tool_force, pub_tool_pose, gripper
 	
 	# initialize node
 	rospy.init_node('urx_driver', anonymous=True)
@@ -52,6 +55,10 @@ def initialize_driver():
 	
 	# get pointer to real time monitor
 	monitor = robot.get_realtime_monitor()
+	
+	# get gripper
+	gripper = Robotiq_Two_Finger_Gripper(robot, 1.25)
+	
 
 def loop():
 	global pub, pub_joint_state, robot, rate, monitor, pub_tool_force, pub_tool_pose
