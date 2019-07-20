@@ -4,7 +4,7 @@ ROS wrapper for the urx library
 To Install:
 
 1. Follow the installation instruction here:
-https://github.com/SintefManufacturing/python-urx
+https://github.com/tufts-ai-robotics-group/python-urx
 
 2. Some dependencies needed for interfacing with the Robotiq gripper:
 
