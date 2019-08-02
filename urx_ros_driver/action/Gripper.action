@@ -1,0 +1,6 @@
+#goal definition
+std_msgs/String request
+---
+#result definition
+bool OpenOrClose
+---
