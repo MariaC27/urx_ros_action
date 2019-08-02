@@ -50,7 +50,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES urx_ros
-   CATKIN_DEPENDS actionlib actionlib_msgs message_generatio geometry_msgs roscpp rospy sensor_msgs std_msgs
+   CATKIN_DEPENDS actionlib actionlib_msgs message_generation geometry_msgs roscpp rospy sensor_msgs std_msgs
 #  DEPENDS system_lib
 )
 
